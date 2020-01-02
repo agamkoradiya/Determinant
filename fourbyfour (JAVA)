@@ -1,0 +1,152 @@
+package com.example.determinant;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.DecimalFormat;
+
+public class fourbyfour extends AppCompatActivity {
+
+    EditText e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15,e16;
+    TextView result;
+    float fd1,fd2,fd3,
+          sd1,sd2,sd3,
+          td1,td2,td3,
+          fod1,fod2,fod3;
+
+    float fdt1,fdt2,fdt3,
+          sdt1,sdt2,sdt3,
+          tdt1,tdt2,tdt3,
+          fodt1,fodt2,fodt3;
+
+    float firstD , secondD , thirdD , fourthD;
+    float firstanswer , secondanswer , thirdanswer , fourthanswer;
+
+    float answer;
+
+    public void calculate(View view) {
+
+        if (TextUtils.isEmpty(e1.getText()) || TextUtils.isEmpty(e2.getText()) || TextUtils.isEmpty(e3.getText()) || TextUtils.isEmpty(e4.getText()) || TextUtils.isEmpty(e5.getText()) || TextUtils.isEmpty(e6.getText()) || TextUtils.isEmpty(e7.getText()) || TextUtils.isEmpty(e8.getText()) ||
+            TextUtils.isEmpty(e9.getText()) || TextUtils.isEmpty(e10.getText()) || TextUtils.isEmpty(e11.getText()) || TextUtils.isEmpty(e12.getText()) || TextUtils.isEmpty(e13.getText()) || TextUtils.isEmpty(e14.getText()) || TextUtils.isEmpty(e15.getText()) || TextUtils.isEmpty(e16.getText())) {
+            Toast.makeText(this, "Please fill all the elements", Toast.LENGTH_SHORT).show();
+        }else {
+// first part calculation
+            fd1 = (Float.parseFloat(e11.getText().toString()) * Float.parseFloat(e16.getText().toString()) - (Float.parseFloat(e12.getText().toString()) * Float.parseFloat(e15.getText().toString())));
+            fd2 = (Float.parseFloat(e10.getText().toString()) * Float.parseFloat(e16.getText().toString()) - (Float.parseFloat(e12.getText().toString()) * Float.parseFloat(e14.getText().toString())));
+            fd3 = (Float.parseFloat(e10.getText().toString()) * Float.parseFloat(e15.getText().toString()) - (Float.parseFloat(e11.getText().toString()) * Float.parseFloat(e14.getText().toString())));
+
+            fdt1 = Float.parseFloat(e6.getText().toString()) * fd1;
+            fdt2 = Float.parseFloat(e7.getText().toString()) * fd2;
+            fdt3 = Float.parseFloat(e8.getText().toString()) * fd3;
+
+            firstanswer = fdt1 - fdt2 + fdt3;
+            firstD = Float.parseFloat(e1.getText().toString())*firstanswer;
+
+// second part calculation
+
+            sd1 = (Float.parseFloat(e11.getText().toString()) * Float.parseFloat(e16.getText().toString()) - (Float.parseFloat(e12.getText().toString()) * Float.parseFloat(e15.getText().toString())));
+            sd2 = (Float.parseFloat(e9.getText().toString()) * Float.parseFloat(e16.getText().toString()) - (Float.parseFloat(e12.getText().toString()) * Float.parseFloat(e13.getText().toString())));
+            sd3 = (Float.parseFloat(e9.getText().toString()) * Float.parseFloat(e15.getText().toString()) - (Float.parseFloat(e11.getText().toString()) * Float.parseFloat(e13.getText().toString())));
+
+            sdt1 = Float.parseFloat(e5.getText().toString()) * sd1;
+            sdt2 = Float.parseFloat(e7.getText().toString()) * sd2;
+            sdt3 = Float.parseFloat(e8.getText().toString()) * sd3;
+
+            secondanswer = sdt1 - sdt2 + sdt3;
+            secondD = Float.parseFloat(e2.getText().toString())*secondanswer;
+
+// Third part calcuration
+
+            td1 = (Float.parseFloat(e10.getText().toString()) * Float.parseFloat(e16.getText().toString()) - (Float.parseFloat(e12.getText().toString()) * Float.parseFloat(e14.getText().toString())));
+            td2 = (Float.parseFloat(e9.getText().toString()) * Float.parseFloat(e16.getText().toString()) - (Float.parseFloat(e12.getText().toString()) * Float.parseFloat(e13.getText().toString())));
+            td3 = (Float.parseFloat(e9.getText().toString()) * Float.parseFloat(e14.getText().toString()) - (Float.parseFloat(e10.getText().toString()) * Float.parseFloat(e13.getText().toString())));
+
+            tdt1 = Float.parseFloat(e5.getText().toString()) * td1;
+            tdt2 = Float.parseFloat(e6.getText().toString()) * td2;
+            tdt3 = Float.parseFloat(e8.getText().toString()) * td3;
+
+            thirdanswer = tdt1 - tdt2 + tdt3;
+            thirdD = Float.parseFloat(e3.getText().toString())*thirdanswer;
+
+// Fourth part calculation
+
+            fod1 = (Float.parseFloat(e10.getText().toString()) * Float.parseFloat(e15.getText().toString()) - (Float.parseFloat(e11.getText().toString()) * Float.parseFloat(e14.getText().toString())));
+            fod2 = (Float.parseFloat(e9.getText().toString()) * Float.parseFloat(e15.getText().toString()) - (Float.parseFloat(e11.getText().toString()) * Float.parseFloat(e13.getText().toString())));
+            fod3 = (Float.parseFloat(e9.getText().toString()) * Float.parseFloat(e14.getText().toString()) - (Float.parseFloat(e10.getText().toString()) * Float.parseFloat(e13.getText().toString())));
+
+            fodt1 = Float.parseFloat(e5.getText().toString()) * fod1;
+            fodt2 = Float.parseFloat(e6.getText().toString()) * fod2;
+            fodt3 = Float.parseFloat(e7.getText().toString()) * fod3;
+
+            fourthanswer = fodt1 - fodt2 + fodt3;
+            fourthD = Float.parseFloat(e4.getText().toString())*fourthanswer;
+
+// FINAL ANSWER :-------
+
+            answer= firstD - secondD + thirdD - fourthD;
+            DecimalFormat format = new DecimalFormat("##.###");
+            String formatted = format.format(answer);
+            result.setText(formatted);
+
+        }
+
+    }
+
+    public void reset(View view){
+        e1.getText().clear();
+        e2.getText().clear();
+        e3.getText().clear();
+        e4.getText().clear();
+        e5.getText().clear();
+        e6.getText().clear();
+        e7.getText().clear();
+        e8.getText().clear();
+        e9.getText().clear();
+        e10.getText().clear();
+        e11.getText().clear();
+        e12.getText().clear();
+        e13.getText().clear();
+        e14.getText().clear();
+        e15.getText().clear();
+        e16.getText().clear();
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_fourbyfour);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar2x2));
+        }
+
+        e1=(EditText)findViewById(R.id.e1id);
+        e2=(EditText)findViewById(R.id.e2id);
+        e3=(EditText)findViewById(R.id.e3id);
+        e4=(EditText)findViewById(R.id.e4id);
+        e5=(EditText)findViewById(R.id.e5id);
+        e6=(EditText)findViewById(R.id.e6id);
+        e7=(EditText)findViewById(R.id.e7id);
+        e8=(EditText)findViewById(R.id.e8id);
+        e9=(EditText)findViewById(R.id.e9id);
+        e10=(EditText)findViewById(R.id.e10id);
+        e11=(EditText)findViewById(R.id.e11id);
+        e12=(EditText)findViewById(R.id.e12id);
+        e13=(EditText)findViewById(R.id.e13id);
+        e14=(EditText)findViewById(R.id.e14id);
+        e15=(EditText)findViewById(R.id.e15id);
+        e16=(EditText)findViewById(R.id.e16id);
+
+        result=(TextView)findViewById(R.id.resultid);
+
+    }
+}
